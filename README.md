@@ -1,5 +1,5 @@
 # sta_workshop
-I have taken some collaterals from Tsung-Wei Huangs OpenTimer repository, modified/customized them for use in general STA workshop
+We have taken some collaterals from Tsung-Wei Huangs OpenTimer repository, modified/customized them for use in general STA workshop
 
 This repository is not straight-forward as it is being used for educational programs. I have deliberately added bugs. 
 
