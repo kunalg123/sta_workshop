@@ -1,0 +1,165 @@
+digraph Taskflow {
+subgraph cluster_p0x7ffd23b59418 {
+label="Taskflow: p0x7ffd23b59418";
+p0x5615e4d642a8[label="p0x5615e4d642a8" ];
+p0x5615e4d642a8 -> p0x5615e4d643b8;
+p0x5615e4d643b8[label="p0x5615e4d643b8" ];
+p0x5615e4d643b8 -> p0x5615e4d645d8;
+p0x5615e4d644c8[label="p0x5615e4d644c8" ];
+p0x5615e4d644c8 -> p0x5615e4d645d8;
+p0x5615e4d645d8[label="p0x5615e4d645d8" ];
+p0x5615e4d645d8 -> p0x5615e4d647f8;
+p0x5615e4d646e8[label="p0x5615e4d646e8" ];
+p0x5615e4d646e8 -> p0x5615e4d647f8;
+p0x5615e4d647f8[label="p0x5615e4d647f8" ];
+p0x5615e4d647f8 -> p0x5615e4d64908;
+p0x5615e4d64908[label="p0x5615e4d64908" ];
+}
+}
+Startpoint    : inp1
+Endpoint      : f1:D
+Analysis type : min
+------------------------------------------------------
+       Type       Delay        Time   Dir  Description
+------------------------------------------------------
+       port       0.000       0.000  fall  inp1
+        pin       0.000       0.000  fall  u1:A (NAND2X1)
+        pin       2.786       2.786  rise  u1:Y (NAND2X1)
+        pin       0.000       2.786  rise  u4:A (NOR2X1)
+        pin       0.181       2.967  fall  u4:Y (NOR2X1)
+        pin       0.000       2.967  fall  f1:D (DFFNEGX1)
+    arrival                   2.967        data arrival time
+
+related pin      25.000      25.000  fall  f1:CLK (DFFNEGX1)
+ constraint       1.518      26.518        library hold_falling
+cppr credit       0.000      26.518
+   required                  26.518        data required time
+------------------------------------------------------
+      slack                 -23.551        VIOLATED
+
+Startpoint    : inp2
+Endpoint      : f1:D
+Analysis type : min
+------------------------------------------------------
+       Type       Delay        Time   Dir  Description
+------------------------------------------------------
+       port       0.000       0.000  rise  inp2
+        pin       0.000       0.000  rise  u1:B (NAND2X1)
+        pin      -0.913      -0.913  fall  u1:Y (NAND2X1)
+        pin       0.000      -0.913  fall  u4:A (NOR2X1)
+        pin       0.100      -0.814  rise  u4:Y (NOR2X1)
+        pin       0.000      -0.814  rise  f1:D (DFFNEGX1)
+    arrival                  -0.814        data arrival time
+
+related pin      25.000      25.000  fall  f1:CLK (DFFNEGX1)
+ constraint      -3.167      21.833        library hold_falling
+cppr credit       0.000      21.833
+   required                  21.833        data required time
+------------------------------------------------------
+      slack                 -22.647        VIOLATED
+
+Startpoint    : inp1
+Endpoint      : f1:D
+Analysis type : min
+------------------------------------------------------
+       Type       Delay        Time   Dir  Description
+------------------------------------------------------
+       port       0.000       0.000  rise  inp1
+        pin       0.000       0.000  rise  u1:A (NAND2X1)
+        pin      -0.486      -0.486  fall  u1:Y (NAND2X1)
+        pin       0.000      -0.486  fall  u4:A (NOR2X1)
+        pin       0.100      -0.386  rise  u4:Y (NOR2X1)
+        pin       0.000      -0.386  rise  f1:D (DFFNEGX1)
+    arrival                  -0.386        data arrival time
+
+related pin      25.000      25.000  fall  f1:CLK (DFFNEGX1)
+ constraint      -3.167      21.833        library hold_falling
+cppr credit       0.000      21.833
+   required                  21.833        data required time
+------------------------------------------------------
+      slack                 -22.220        VIOLATED
+
+Startpoint    : inp2
+Endpoint      : f1:D
+Analysis type : min
+------------------------------------------------------
+       Type       Delay        Time   Dir  Description
+------------------------------------------------------
+       port       0.000       0.000  fall  inp2
+        pin       0.000       0.000  fall  u1:B (NAND2X1)
+        pin       4.592       4.592  rise  u1:Y (NAND2X1)
+        pin       0.000       4.592  rise  u4:A (NOR2X1)
+        pin       0.181       4.773  fall  u4:Y (NOR2X1)
+        pin       0.000       4.773  fall  f1:D (DFFNEGX1)
+    arrival                   4.773        data arrival time
+
+related pin      25.000      25.000  fall  f1:CLK (DFFNEGX1)
+ constraint       1.518      26.518        library hold_falling
+cppr credit       0.000      26.518
+   required                  26.518        data required time
+------------------------------------------------------
+      slack                 -21.744        VIOLATED
+
+Startpoint    : f1:CLK
+Endpoint      : out
+Analysis type : max
+------------------------------------------------------
+       Type       Delay        Time   Dir  Description
+------------------------------------------------------
+        pin      25.000      25.000  fall  f1:CLK (DFFNEGX1)
+        pin       2.377      27.377  fall  f1:Q (DFFNEGX1)
+        pin       0.000      27.377  fall  u2:A (INVX1)
+        pin       0.138      27.515  rise  u2:Y (INVX1)
+        pin       0.000      27.515  rise  u3:A (INVX2)
+        pin       3.208      30.724  fall  u3:Y (INVX2)
+       port       0.000      30.724  fall  out
+    arrival                  30.724        data arrival time
+
+       port      20.000      20.000        output port delay
+   required                  20.000        data required time
+------------------------------------------------------
+      slack                 -10.724        VIOLATED
+digraph TimingGraph {
+  "u4:A";
+  "u4:Y";
+  "u3:A";
+  "inp2";
+  "tau2015_clk";
+  "u1:Y";
+  "out";
+  "u1:B";
+  "u1:A";
+  "u2:Y";
+  "u4:B";
+  "inp1";
+  "u3:Y";
+  "f1:Q";
+  "f1:D";
+  "f1:CLK";
+  "u2:A";
+  "u1:Y" -> "u4:A";
+  "f1:Q" -> "u4:B";
+  "u4:Y" -> "f1:D";
+  "u4:B" -> "u4:Y";
+  "u4:A" -> "u4:Y";
+  "u4:B" -> "u4:Y";
+  "u4:A" -> "u4:Y";
+  "u2:Y" -> "u3:A";
+  "u3:Y" -> "out";
+  "u3:A" -> "u3:Y";
+  "u3:A" -> "u3:Y";
+  "f1:Q" -> "u2:A";
+  "u2:A" -> "u2:Y";
+  "u2:A" -> "u2:Y";
+  "tau2015_clk" -> "f1:CLK";
+  "f1:CLK" -> "f1:D";
+  "f1:CLK" -> "f1:Q";
+  "f1:CLK" -> "f1:D";
+  "f1:CLK" -> "f1:Q";
+  "inp1" -> "u1:A";
+  "inp2" -> "u1:B";
+  "u1:B" -> "u1:Y";
+  "u1:A" -> "u1:Y";
+  "u1:B" -> "u1:Y";
+  "u1:A" -> "u1:Y";
+}
